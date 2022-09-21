@@ -1,0 +1,36 @@
+from queue import PriorityQueue
+v = 10
+graph = [[]
+  for i in range(v)
+]
+def BFS(Source, Target, n):
+  visited = [False] * n
+pq = PriorityQueue()
+pq.put((0, Source))
+visited[Source] = True
+while pq.empty() == False:
+  u = pq.get()[1]
+print(u, end = " ")
+if u == target:
+  break
+for v, c in graph[u]:
+  if visited[v] == False:
+  visited[v] = True
+pq.put((c, v))
+print()
+def addedge(x, y, cost):
+  graph[x].append((y, cost))
+graph[y].append((x, cost))
+addedge(0, 1, 4)
+addedge(0, 2, 3)
+addedge(1, 5, 5)
+addedge(1, 4, 4)
+addedge(2, 3, 7)
+addedge(2, 4, 10)
+addedge(3, 4, 2)
+addedge(4, 6, 5)
+addedge(5, 6, 16)
+
+src = 0
+target = 6
+BFS(src, target, v)
